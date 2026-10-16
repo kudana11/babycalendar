@@ -630,7 +630,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&SH)closeSheet()});
 function toast(m){const t=$('#toast');t.textContent=trs(m);t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2400)}
 const val=id=>{const el=document.getElementById(id);return el?el.value.trim():''};
 const chip=(on,attrs,inner)=>`<button type="button" class="chip" aria-pressed="${!!on}" ${attrs}>${inner}</button>`;
-function armDelete(btn,fn){ if(btn.classList.contains('armed')){fn();return} btn.classList.add('armed'); btn.textContent='한 번 더 누르면 삭제'; setTimeout(()=>{if(btn.isConnected){btn.classList.remove('armed');btn.textContent='삭제'}},3000); }
+function armDelete(btn,fn){ if(btn.classList.contains('armed')){fn();return} const orig=btn.textContent; btn.classList.add('armed'); btn.textContent=K('한 번 더 누르면 삭제','Tap again to delete'); setTimeout(()=>{if(btn.isConnected){btn.classList.remove('armed');btn.textContent=orig}},3000); }
 
 /* ---------- event sheet ---------- */
 let F=null;
@@ -789,8 +789,8 @@ async function exportFile(btn){
   const html=buildExport(); let dl=null;
   try{ dl=(window.claude&&window.claude.use)?await window.claude.use('downloads'):null }catch(e){dl=null}
   try{
-    if(dl){ await dl.save({filename:name,data:html}); btn.textContent='저장했어요'; }
-    else { const url=URL.createObjectURL(new Blob([html],{type:'text/html'})); const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000); btn.textContent='저장했어요'; }
+    if(dl){ await dl.save({filename:name,data:html}); btn.textContent=K('저장했어요','Saved'); }
+    else { const url=URL.createObjectURL(new Blob([html],{type:'text/html'})); const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000); btn.textContent=K('저장했어요','Saved'); }
   }catch(e){ toast('저장하지 않았어요'); }
 }
 function copyLink(){
@@ -820,7 +820,7 @@ function openShare(){ openSheet('할머니·할아버지와 함께 보기',()=>`
   ${S.mode==='local'?'<p class="hint">지금은 미리보기 모드라 이 기기에만 저장되고 있어요.</p>':''}`,()=>{
   const ex=document.getElementById('exportFile'); if(ex) ex.onclick=()=>exportFile(ex);
   const btn=document.getElementById('copyLink'), inp=document.getElementById('share-url');
-  btn.onclick=()=>{ const done=()=>{btn.textContent='복사했어요';toast('링크를 복사했어요')};
+  btn.onclick=()=>{ const done=()=>{btn.textContent=K('복사했어요','Copied');toast('링크를 복사했어요')};
     const fallback=()=>{inp.focus();inp.select();inp.setSelectionRange(0,999);let ok=false;try{ok=document.execCommand('copy')}catch(e){} ok?done():toast('링크를 길게 눌러 복사해 주세요')};
     try{ navigator.clipboard.writeText(shareUrl()).then(done,fallback) }catch(e){ fallback() } };
  }); }
