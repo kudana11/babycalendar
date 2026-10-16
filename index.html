@@ -1,6 +1,14 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>우리 아이 시간표</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="아이별 주간 시간표, 돌봄 담당, 프리셋, 공휴일을 한눈에. 링크 하나로 가족과 공유해요.">
+<meta name="theme-color" content="#FBF7FF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="아이 시간표">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap">
@@ -218,13 +226,17 @@ textarea{min-height:64px;resize:vertical}
 .months button[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 86px);transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:14px;font-size:13px;z-index:60;max-width:calc(100% - 40px)}
 .sub-tabs{display:flex;gap:6px}
+.shared-bn{border:2px solid var(--accent)}
+.shared-bn .row .btn{flex:1;min-width:140px}
 </style>
 
+</head>
+<body>
 <div class="wrap" id="app"></div>
 <button class="fab" id="fab" hidden aria-label="일정 추가"></button>
 <div id="sheetRoot"></div>
 <div class="toast" id="toast" hidden></div>
-<script id="state" type="application/json">{"data": {"kids": {"jion": {"birth": "2023-04-23", "char": "bunny", "color": "#FFEBA8", "name": "지온", "id": "jion"}, "jia": {"birth": "2020-06-11", "char": "mouse", "color": "#FFC4D6", "name": "지아", "id": "jia"}}, "people": {"mom": {"char": "mom", "color": "#FFD4B8", "name": "엄마", "order": 0, "role": "엄마", "id": "mom"}, "dad": {"char": "dad", "color": "#C4E1FF", "name": "아빠", "order": 1, "role": "아빠", "id": "dad"}, "2hkqendd6ep": {"char": "grandpa", "color": "#E8E1F2", "name": "외할아버지", "order": 6, "role": "외할아버지", "id": "2hkqendd6ep"}, "ewa5fu9cwzk": {"char": "girl", "color": "#DDF2B5", "name": "이모", "order": 5, "role": "이모", "id": "ewa5fu9cwzk"}, "gm-m": {"char": "grandma", "color": "#BDEBDC", "name": "외할머니", "order": 3, "role": "외할머니", "id": "gm-m"}, "gm-p": {"char": "grandma", "color": "#DCCBFF", "name": "친할머니", "order": 2, "role": "친할머니", "id": "gm-p"}, "jaranda": {"char": "sitter", "color": "#FFEBA8", "name": "째깍샘", "order": 5, "role": "시터", "id": "jaranda"}}, "presets": {"p00": {"days": [], "dur": 60, "icon": "hospital", "kids": [], "name": "소아과 독감주사", "order": 0, "place": "", "start": "", "with": ["mom"], "id": "p00"}, "p13": {"days": [], "dur": 10, "icon": "pickup", "kids": [], "name": "픽업", "order": 13, "place": "", "start": "15:10", "with": [], "id": "p13"}, "p04": {"days": [], "dur": 420, "icon": "daycare", "kids": [], "name": "어린이집", "order": 4, "place": "", "start": "09:00", "with": [], "id": "p04"}, "p01": {"days": [], "dur": 30, "icon": "shot", "kids": [], "name": "예방접종", "order": 1, "place": "", "start": "", "with": ["mom"], "id": "p01"}, "p06": {"days": [], "dur": 120, "icon": "musical", "kids": [], "name": "뮤지컬", "order": 6, "place": "", "start": "", "with": ["mom", "dad"], "id": "p06"}, "p10": {"days": [], "dur": 50, "icon": "board", "kids": [], "name": "바둑", "order": 10, "place": "", "start": "19:00", "with": [], "id": "p10"}, "p07": {"allDay": true, "days": [], "dur": 0, "icon": "plane", "kids": [], "name": "가족 휴가", "nights": 2, "order": 7, "place": "", "start": "", "with": ["mom", "dad"], "id": "p07"}, "p05": {"days": [], "dur": 360, "icon": "kinder", "kids": [], "name": "유치원", "order": 5, "place": "", "start": "09:00", "with": [], "id": "p05"}, "p12": {"days": [], "dur": 50, "icon": "art", "kids": [], "name": "종이클레이", "order": 12, "place": "", "start": "17:00", "with": [], "id": "p12"}, "p03": {"days": [], "dur": 50, "icon": "tkd", "kids": [], "name": "태권도", "order": 3, "place": "", "start": "16:00", "with": [], "id": "p03"}, "p14": {"days": [], "dur": 40, "icon": "bus", "kids": [], "name": "셔틀", "order": 14, "place": "", "start": "15:20", "with": [], "id": "p14"}, "p08": {"days": [], "dur": 80, "icon": "skate", "kids": [], "name": "스케이트", "order": 8, "place": "", "start": "16:00", "with": [], "id": "p08"}, "p16": {"days": [], "dur": 20, "icon": "home", "kids": [], "name": "귀가", "order": 16, "place": "", "start": "17:50", "with": [], "id": "p16"}, "p11": {"days": [], "dur": 50, "icon": "lego", "kids": [], "name": "레고", "order": 11, "place": "", "start": "17:00", "with": [], "id": "p11"}, "p15": {"days": [], "dur": 40, "icon": "meal", "kids": [], "name": "저녁식사", "order": 15, "place": "", "start": "17:50", "with": [], "id": "p15"}, "p02": {"days": [], "dur": 50, "icon": "piano", "kids": [], "name": "피아노", "order": 2, "place": "", "start": "", "with": [], "id": "p02"}, "p09": {"days": [], "dur": 50, "icon": "board", "kids": [], "name": "체스", "order": 9, "place": "", "start": "18:10", "with": [], "id": "p09"}}, "events": {"qucgvjjkwvh": {"date": "2026-10-12", "days": [0, 1, 2, 3, 4], "end": "15:30", "icon": "kinder", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "start": "09:00", "title": "영국문화원", "until": "", "with": ["dad"], "id": "qucgvjjkwvh"}, "jia-e12": {"date": "2026-10-12", "days": [2], "end": "18:30", "ex": [], "icon": "meal", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "17:50", "title": "저녁식사", "until": "2026-10-18", "with": ["jaranda"], "id": "jia-e12"}, "jia-e10": {"date": "2026-10-12", "days": [0], "end": "18:30", "ex": [], "icon": "meal", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "17:50", "title": "저녁식사", "until": "2026-10-18", "with": ["seorae"], "id": "jia-e10"}, "jia-e17": {"date": "2026-10-12", "days": [1], "end": "19:00", "ex": [], "icon": "board", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "18:10", "title": "체스", "until": "2026-10-18", "with": [], "id": "jia-e17"}, "ygrjt33e5r4": {"date": "2026-10-19", "end": "15:20", "icon": "pickup", "kids": ["jia"], "kind": "event", "memo": "박주연 선생님", "place": "", "repeat": false, "start": "15:10", "title": "하원", "with": ["yeonwoo-mom", "dad", "jaranda"], "id": "ygrjt33e5r4"}, "jia-e08": {"date": "2026-10-12", "days": [3], "end": "17:50", "ex": [], "icon": "lego", "kids": ["jia"], "kind": "event", "memo": "16:50 하차 후 자란다샘과 이동", "place": "", "repeat": true, "sample": true, "start": "17:00", "title": "레고", "until": "2026-10-18", "with": [], "id": "jia-e08"}, "jia-e02": {"date": "2026-10-12", "days": [0, 3, 4], "end": "16:00", "ex": [], "icon": "bus", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "15:20", "title": "태권도 셔틀", "until": "", "with": [], "id": "jia-e02"}, "jia-e15": {"date": "2026-10-12", "days": [3], "end": "18:50", "ex": [], "icon": "meal", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "18:10", "title": "저녁식사", "until": "2026-10-18", "with": ["jaranda"], "id": "jia-e15"}, "jia-e07": {"date": "2026-10-12", "days": [2], "end": "17:20", "ex": [], "icon": "skate", "kids": ["jia"], "kind": "event", "memo": "17:20 하차 · 자란다샘 마중", "place": "", "repeat": true, "sample": true, "start": "16:00", "title": "스케이트", "until": "", "with": [], "id": "jia-e07"}, "jia-e18": {"date": "2026-10-12", "days": [1], "end": "19:50", "ex": [], "icon": "board", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "19:00", "title": "바둑", "until": "2026-10-18", "with": [], "id": "jia-e18"}, "jia-e05": {"date": "2026-10-12", "days": [0, 1, 3, 4], "end": "16:50", "ex": [], "icon": "tkd", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "16:00", "title": "태권도", "until": "2026-10-18", "with": [], "id": "jia-e05"}, "jia-e04": {"date": "2026-10-12", "days": [2], "end": "16:00", "ex": [], "icon": "bus", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "15:20", "title": "스케이트 셔틀", "until": "", "with": [], "id": "jia-e04"}, "jia-e11": {"date": "2026-10-12", "days": [1], "end": "18:10", "ex": [], "icon": "meal", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "17:50", "title": "저녁식사", "until": "2026-10-18", "with": ["seorae"], "id": "jia-e11"}, "yllilmbnw8u": {"date": "2026-10-18", "end": "18:30", "icon": "musical", "kids": ["jia"], "kind": "event", "memo": "육아크루: 겨울쿨 2매", "place": "국립중앙박물관", "repeat": false, "start": "16:30", "title": "뮤지컬", "with": ["mom"], "id": "yllilmbnw8u"}, "jia-c2": {"caregiver": "jaranda", "date": "2026-10-12", "days": [2], "end": "20:20", "ex": [], "kids": ["jia"], "kind": "care", "memo": "20:20 퇴근", "repeat": true, "sample": true, "start": "17:20", "until": "2026-10-18", "id": "jia-c2"}, "tnui5klres3": {"date": "2026-10-19", "days": [0], "end": "15:50", "icon": "piano", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "start": "15:00", "title": "피아노", "until": "", "with": [], "id": "tnui5klres3"}, "jia-c3": {"caregiver": "jaranda", "date": "2026-10-12", "days": [3], "end": "19:50", "ex": [], "kids": ["jia"], "kind": "care", "memo": "19:50 퇴근", "repeat": true, "sample": true, "start": "16:50", "until": "2026-10-18", "id": "jia-c3"}, "jia-e16": {"date": "2026-10-12", "days": [4], "end": "18:50", "ex": [], "icon": "meal", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "18:10", "title": "저녁식사", "until": "2026-10-18", "with": ["seorae"], "id": "jia-e16"}, "hj8uskfrqod": {"date": "2026-10-19", "days": [0, 1, 2, 3, 4], "end": "16:00", "icon": "daycare", "kids": ["jion"], "kind": "event", "memo": "", "place": "반포하늘어린이집", "repeat": true, "start": "09:00", "title": "어린이집", "until": "", "with": ["dad"], "id": "hj8uskfrqod"}, "jia-e06": {"date": "2026-10-12", "days": [0, 1], "end": "17:20", "ex": [], "icon": "bus", "kids": ["jia"], "kind": "event", "memo": "17:20 하차 · 서래마을샘 마중", "place": "", "repeat": true, "sample": true, "start": "16:50", "title": "태권도 하원 셔틀", "until": "2026-10-18", "with": [], "id": "jia-e06"}, "jia-c4": {"caregiver": "seorae", "date": "2026-10-12", "days": [4], "end": "19:50", "ex": [], "kids": ["jia"], "kind": "care", "memo": "19:50 퇴근", "repeat": true, "sample": true, "start": "16:50", "until": "2026-10-18", "id": "jia-c4"}, "jia-e09": {"date": "2026-10-12", "days": [4], "end": "17:50", "ex": [], "icon": "art", "kids": ["jia"], "kind": "event", "memo": "16:50 하차 후 서래마을샘과 이동", "place": "", "repeat": true, "sample": true, "start": "17:00", "title": "종이클레이", "until": "2026-10-18", "with": [], "id": "jia-e09"}, "jia-c1": {"caregiver": "seorae", "date": "2026-10-12", "days": [1], "end": "20:20", "ex": [], "kids": ["jia"], "kind": "care", "memo": "20:20 퇴근", "repeat": true, "sample": true, "start": "15:10", "until": "2026-10-18", "id": "jia-c1"}, "jia-e14": {"date": "2026-10-12", "days": [4], "end": "18:10", "ex": [], "icon": "home", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "17:50", "title": "귀가", "until": "2026-10-18", "with": ["seorae"], "id": "jia-e14"}, "jia-e13": {"date": "2026-10-12", "days": [3], "end": "18:10", "ex": [], "icon": "home", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "17:50", "title": "귀가", "until": "2026-10-18", "with": ["jaranda"], "id": "jia-e13"}, "jia-e03": {"date": "2026-10-12", "days": [1], "end": "16:00", "ex": [], "icon": "bus", "kids": ["jia"], "kind": "event", "memo": "", "place": "", "repeat": true, "sample": true, "start": "15:20", "title": "마을버스 이동", "until": "2026-10-18", "with": ["seorae"], "id": "jia-e03"}, "jia-c0": {"caregiver": "seorae", "date": "2026-10-12", "days": [0], "end": "20:20", "ex": [], "kids": ["jia"], "kind": "care", "memo": "20:20 퇴근", "repeat": true, "sample": true, "start": "17:20", "until": "2026-10-18", "id": "jia-c0"}}}}</script>
+<script id="state" type="application/json">{"data":{}}</script>
 <script>
 let LANG='ko'; try{const v=JSON.parse(localStorage.getItem('kc-ui')||'{}'); if(v.lang) LANG=v.lang; else if(!/^ko/i.test(navigator.language||'ko')) LANG='en';}catch(e){}
 const K=(ko,en)=>LANG==='en'?en:ko;
@@ -384,39 +396,52 @@ function setLang(l){ LANG=l; WD=LANG==='en'?WDE:WDK; document.documentElement.la
 /* 일정 데이터는 페이지 안 #state 에 함께 저장된다 → 링크만 있으면 로그인 없이도 보임 */
 let STATE={data:{}}; try{const el=document.getElementById('state'); if(el) STATE=JSON.parse(el.textContent||'{}')||{data:{}};}catch(e){}
 const FILE=STATE.file||null;
-const LS_KEY=FILE?'kc-file.'+FILE.at:'kc-preview';
+const LS_KEY=FILE?'kc-file.'+FILE.at:'kc-local';
 function applyData(v){ v=v||{}; COLS.forEach(c=>S[c]=v[c]||{}); COLS.forEach(c=>S.loaded[c]=true); }
 function snapshot(){ const o={}; COLS.forEach(c=>o[c]=S[c]); return o; }
 function saveLocal(){try{localStorage.setItem(LS_KEY,JSON.stringify(snapshot()))}catch(e){}}
-let ART=null, saveTimer=null;
-function persist(){
-  if(S.mode==='artifact'){ S.saving=true; render(); clearTimeout(saveTimer); saveTimer=setTimeout(saveNow,700); }
-  else saveLocal();
+/* ---------- 저장: 내 시간표는 이 기기(localStorage)에, 공유는 일정이 담긴 링크(#s=...)로 ---------- */
+const b64u=bytes=>{ let x=''; for(let i=0;i<bytes.length;i+=8192) x+=String.fromCharCode.apply(null,bytes.subarray(i,i+8192)); return btoa(x).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); };
+const unb64u=str=>{ str=str.replace(/-/g,'+').replace(/_/g,'/'); while(str.length%4) str+='='; const bin=atob(str); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return u; };
+async function packData(){
+  const o={v:1,at:Date.now(),d:{}}; COLS.forEach(c=>{ o.d[c]={}; Object.values(S[c]).forEach(x=>{ const {id,...b}=x; o.d[c][id]=b; }); });
+  const raw=new TextEncoder().encode(JSON.stringify(o));
+  if(window.CompressionStream){ try{ const st=new Blob([raw]).stream().pipeThrough(new CompressionStream('deflate-raw')); return 'z'+b64u(new Uint8Array(await new Response(st).arrayBuffer())); }catch(e){} }
+  return 'j'+b64u(raw);
 }
-async function saveNow(){
-  try{sessionStorage.setItem('kc-nav',JSON.stringify({sel:S.sel,anchor:ymd(S.anchor)}))}catch(e){}
-  try{ await ART.publish(buildArtifactPage()); /* 성공하면 새 버전으로 다시 열림 */ }
-  catch(e){ S.saving=false; const c=e&&e.code;
-    if(c==='conflict') toast('다른 가족이 먼저 고쳤어요. 최신 시간표를 다시 불러와요');
-    else if(c==='not_writer'||c==='not_granted'||c==='not_declared'||c==='capability_disabled'||c==='consent_required'){ S.canWrite=false; toast('보기 전용이라 수정한 내용이 저장되지 않아요'); }
-    else if(c==='rate_limited') { toast('잠시 후 다시 저장할게요'); saveTimer=setTimeout(saveNow,4000); S.saving=true; }
-    else toast('저장하지 못했어요. 다시 시도해 주세요');
-    render(); }
+async function unpack(str){
+  const t=str[0], bytes=unb64u(str.slice(1)); let txt;
+  if(t==='z'){ const st=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw')); txt=await new Response(st).text(); }
+  else txt=new TextDecoder().decode(bytes);
+  const o=JSON.parse(txt); const d={}; COLS.forEach(c=>{ d[c]={}; Object.entries((o.d||{})[c]||{}).forEach(([id,b])=>{ d[c][id]={...b,id}; }); });
+  return {at:o.at||0,data:d};
 }
-async function put(col,obj){ S[col]={...S[col],[obj.id]:obj}; render(); persist(); }
-async function del(col,id){ const n={...S[col]}; delete n[id]; S[col]=n; render(); persist(); }
-
+let PACKED='', packTimer=null, SHARED=null;
+function repack(){ clearTimeout(packTimer); packTimer=setTimeout(async()=>{ try{ PACKED=await packData(); }catch(e){ PACKED=''; } },250); }
+const baseUrl=()=>location.href.split('#')[0];
+const shareUrl=()=>S.mode==='shared'?location.href:(PACKED?baseUrl()+'#s='+PACKED:'');
+async function put(col,obj){ S[col]={...S[col],[obj.id]:obj}; render(); if(S.mode!=='shared'){ saveLocal(); repack(); } }
+async function del(col,id){ const n={...S[col]}; delete n[id]; S[col]=n; render(); if(S.mode!=='shared'){ saveLocal(); repack(); } }
+function loadMine(){ let v=null; try{v=JSON.parse(localStorage.getItem(LS_KEY)||'null')}catch(e){} applyData(v||(FILE?STATE.data:{})); }
 async function init(){
   document.documentElement.lang=LANG;
-  if(FILE){ let v=null; try{v=JSON.parse(localStorage.getItem(LS_KEY)||'null')}catch(e){} applyData(v||STATE.data); S.mode='file'; S.canWrite=true; render(); return; }
-  applyData(STATE.data); S.mode='artifact'; render();
-  let c=window.claude; const t0=Date.now(); while(!(c&&c.use)&&Date.now()-t0<2500){ await new Promise(r=>setTimeout(r,100)); c=window.claude; }
-  if(!(c&&c.use)){ let v=null; try{v=JSON.parse(localStorage.getItem(LS_KEY)||'null')}catch(e){} if(v) applyData(v); S.mode='local'; S.canWrite=true; render(); return; }
-  try{ ART=await c.use('artifact') }catch(e){ ART=null }
-  let w=!!ART;
-  if(ART){ try{ const u=await c.use('user'); if(u){ const ce=await u.canEdit(); if(ce===false) w=false; } }catch(e){} }
-  S.canWrite=w; render();
+  const m=location.hash.match(/^#s=([A-Za-z0-9_-]+)/);
+  if(m&&!FILE){
+    try{ SHARED=await unpack(m[1]); applyData(SHARED.data); S.mode='shared'; S.canWrite=false; render(); return; }
+    catch(e){ toast(K('공유 링크를 열지 못했어요. 링크가 잘렸는지 확인해 주세요','Could not open this shared link. It may be cut off')); }
+  }
+  SHARED=null; loadMine(); S.mode=FILE?'file':'local'; S.canWrite=true; render(); repack();
 }
+window.addEventListener('hashchange',()=>{ closeSheet(); init(); });
+function keepShared(btn){
+  let mine=null; try{mine=JSON.parse(localStorage.getItem(LS_KEY)||'null')}catch(e){}
+  const has=mine&&Object.keys(mine.kids||{}).length;
+  const go=()=>{ try{ localStorage.setItem(LS_KEY,JSON.stringify(snapshot())); }catch(e){}
+    history.replaceState(null,'',baseUrl()); SHARED=null; S.mode='local'; S.canWrite=true; render(); repack(); toast(K('내 시간표로 저장했어요','Saved as my schedule')); };
+  if(!has) return go();
+  armDelete(btn,go); btn.textContent=K('한 번 더 누르면 내 시간표를 바꿔요','Tap again to replace my schedule');
+}
+function openMine(){ history.replaceState(null,'',baseUrl()); SHARED=null; loadMine(); S.mode='local'; S.canWrite=true; render(); repack(); }
 const ready=()=>COLS.every(c=>S.loaded[c]);
 
 /* ---------- queries ---------- */
@@ -466,7 +491,6 @@ function render(){
   const app=$('#app'); const kids=kidList();
   if(S.kid!=='all'&&!S.kids[S.kid]&&ready()) S.kid='all';
   const top=`<div class="top"><div class="logo"><svg class="mark" viewBox="0 0 48 48"><rect x="4" y="8" width="40" height="36" rx="11" fill="#FFC4D6"/><rect x="4" y="8" width="40" height="12" rx="6" fill="#FF9DB5"/><circle cx="15" cy="8" r="3" fill="#fff"/><circle cx="33" cy="8" r="3" fill="#fff"/><circle cx="18" cy="30" r="2.2" fill="${INK}"/><circle cx="30" cy="30" r="2.2" fill="${INK}"/><path d="M21 34q3 3 6 0" stroke="${INK}" stroke-width="2" fill="none" stroke-linecap="round"/></svg><h1>우리 아이 시간표</h1></div>
-    ${S.saving?'<span class="ro">저장 중…</span>':S.canWrite||S.mode!=='artifact'?'':'<span class="ro">보기 전용</span>'}
     <button class="pill-btn lang" data-a="lang" data-nt="1" aria-label="${LANG==='en'?'한국어로 보기':'View in English'}">${LANG==='en'?'한국어':'EN'}</button>
     <button class="pill-btn icon" data-a="share" aria-label="링크 복사">${UI.share}</button>
     <button class="pill-btn icon" data-a="settings" aria-label="설정">${UI.gear}</button></div>`;
@@ -486,8 +510,9 @@ function render(){
   if(!ready()) body=`<div class="empty"><b>시간표를 불러오는 중이에요</b>잠시만 기다려 주세요</div>`;
   else if(!kids.length) body=onboarding();
   else body=(S.view==='week'?weekGrid():monthGrid())+agenda();
-  const note=S.mode==='local'?`<div class="mode-note">미리보기라 이 기기에만 저장돼요.</div>`:S.mode==='file'?`<div class="mode-note">${K(`${esc(FILE.label||'')} 기준으로 저장한 파일이에요. 여기서 고친 내용은 이 기기에만 남아요.`,`Saved as a file on ${esc(FILE.label||'')}. Changes here stay on this device.`)}</div>`:'';
-  app.innerHTML=top+tabs+nav+body+note; localize(app);
+  const note=S.mode==='local'?`<div class="mode-note">${K('내 시간표는 이 기기에 저장돼요. 공유 버튼을 누르면 지금 시간표가 담긴 링크가 복사돼요.','Your schedule is saved on this device. Tap share to copy a link with your current schedule.')}</div>`:S.mode==='shared'?'':S.mode==='file'?`<div class="mode-note">${K(`${esc(FILE.label||'')} 기준으로 저장한 파일이에요. 여기서 고친 내용은 이 기기에만 남아요.`,`Saved as a file on ${esc(FILE.label||'')}. Changes here stay on this device.`)}</div>`:'';
+  const banner=S.mode==='shared'?`<div class="help shared-bn"><b>${K('공유받은 시간표','Shared schedule')}</b><span class="hint">${SHARED&&SHARED.at?K(`${fmtDay(new Date(SHARED.at))} 기준으로 공유된 시간표예요. 보기만 할 수 있어요.`,`Shared on ${fmtDay(new Date(SHARED.at))}. View only.`):''}</span><div class="row"><button class="btn pri" data-a="keep">${K('내 시간표로 저장','Save as my schedule')}</button><button class="btn" data-a="mine">${K('내 시간표 열기','Open my schedule')}</button></div></div>`:'';
+  app.innerHTML=top+banner+tabs+nav+body+note; localize(app);
   const fab=$('#fab'); fab.hidden=!(S.canWrite&&ready()&&kids.length); fab.innerHTML=UI.plus+'일정 추가';
   scrollNow();
 }
@@ -579,6 +604,8 @@ document.addEventListener('click',e=>{
   else if(a==='jump') openJump();
   else if(a==='share') copyLink();
   else if(a==='lang') setLang(LANG==='en'?'ko':'en');
+  else if(a==='keep') keepShared(t);
+  else if(a==='mine') openMine();
   else if(a==='settings') openSettings('kids');
   else if(a==='addkid') openKid(null);
   else if(a==='starter') addStarter();
@@ -766,17 +793,17 @@ async function exportFile(btn){
     else { const url=URL.createObjectURL(new Blob([html],{type:'text/html'})); const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000); btn.textContent='저장했어요'; }
   }catch(e){ toast('저장하지 않았어요'); }
 }
-const SHARE_URL='https://claude.ai/artifact/QK4Ru7XKDZkdQ7BGcjKyRA';
 function copyLink(){
+  const url=shareUrl(); if(!url){ toast(K('잠시 후 다시 눌러 주세요','Try again in a moment')); repack(); return; }
   const ok=()=>toast('링크를 복사했어요');
-  const fallback=()=>{ const ta=document.createElement('textarea'); ta.value=SHARE_URL; ta.setAttribute('readonly',''); ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
-    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,999); let done=false; try{done=document.execCommand('copy')}catch(e){} ta.remove();
-    done?ok():toast(K('복사하지 못했어요: ','Couldn’t copy: ')+SHARE_URL); };
-  try{ navigator.clipboard.writeText(SHARE_URL).then(ok,fallback) }catch(e){ fallback() }
+  const fallback=()=>{ const ta=document.createElement('textarea'); ta.value=url; ta.setAttribute('readonly',''); ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,url.length); let done=false; try{done=document.execCommand('copy')}catch(e){} ta.remove();
+    done?ok():toast(K('복사하지 못했어요','Couldn’t copy')); };
+  try{ navigator.clipboard.writeText(url).then(ok,fallback) }catch(e){ fallback() }
 }
 function openShare(){ openSheet('할머니·할아버지와 함께 보기',()=>`
   <div class="help">${avatar('grandma','#DCCBFF',56)}<b>시간표 링크</b>
-   <input id="share-url" type="text" readonly value="${SHARE_URL}" aria-label="시간표 링크" onclick="this.select()">
+   <input id="share-url" type="text" readonly value="${shareUrl()}" aria-label="시간표 링크" onclick="this.select()">
    <button type="button" class="btn pri" id="copyLink">링크 복사</button>
    <span class="hint">복사한 링크를 카톡 등으로 보내 주세요.</span></div>
   <div class="help"><b>로그인 없이 보게 하려면</b>
@@ -795,7 +822,7 @@ function openShare(){ openSheet('할머니·할아버지와 함께 보기',()=>`
   const btn=document.getElementById('copyLink'), inp=document.getElementById('share-url');
   btn.onclick=()=>{ const done=()=>{btn.textContent='복사했어요';toast('링크를 복사했어요')};
     const fallback=()=>{inp.focus();inp.select();inp.setSelectionRange(0,999);let ok=false;try{ok=document.execCommand('copy')}catch(e){} ok?done():toast('링크를 길게 눌러 복사해 주세요')};
-    try{ navigator.clipboard.writeText(SHARE_URL).then(done,fallback) }catch(e){ fallback() } };
+    try{ navigator.clipboard.writeText(shareUrl()).then(done,fallback) }catch(e){ fallback() } };
  }); }
 
 /* ---------- settings ---------- */
@@ -882,4 +909,5 @@ function addStarter(){
 init();
 </script>
 
-</body></html>
+</body>
+</html>
